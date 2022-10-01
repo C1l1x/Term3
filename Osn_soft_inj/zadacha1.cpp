@@ -17,7 +17,23 @@ int main(){
     cout << "Insert b: "; cin >> b;
     cout << "insert c: "; cin >> c;
 
-    if (a<=b)
+    if (a==0&&b==0)
+    {
+        n = -c;
+        cout << n << endl;
+    }
+    if (b==0&&c==0)
+    {
+        n = -a;
+        cout << n << endl;
+    }
+    if (a==0&&c==0)
+    {
+        n = -b;
+        cout << n << endl;
+    }
+    
+    if (a>0&&a<=b)
     {
         if(a<c&&b<=c||a<c&&c<=b)
         {
@@ -25,7 +41,7 @@ int main(){
             cout << n << endl;
         }   
     }
-    if (b<=c)
+    if (b>0&&b<=c)
     {
         if(b<a&&a<=c||b<a&&c<=a)
         {
@@ -33,7 +49,7 @@ int main(){
             cout << n << endl;
         }   
     }
-    if (c<=a)
+    if (c>0&&c<=a)
     {
         if(c<b&&a<=b||c<b&&b<=a)
         {
