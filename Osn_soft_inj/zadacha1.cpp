@@ -17,25 +17,25 @@ int main(){
     cout << "Insert b: "; cin >> b;
     cout << "insert c: "; cin >> c;
 
-    if (a<b)
+    if (a<=b)
     {
-        if(a<c&&b<c||a<c&&c<b)
+        if(a<c&&b<=c||a<c&&c<=b)
         {
             n = a-b*c;
             cout << n << endl;
         }   
     }
-    if (b<c)
+    if (b<=c)
     {
-        if(b<a&&a<c||b<a&&c<a)
+        if(b<a&&a<=c||b<a&&c<=a)
         {
             n = b-a*c;
             cout << n << endl;
         }   
     }
-    if (c<a)
+    if (c<=a)
     {
-        if(c<b&&a<b||c<b&&b<a)
+        if(c<b&&a<=b||c<b&&b<=a)
         {
             n = c-b*a;
             cout << n << endl;
