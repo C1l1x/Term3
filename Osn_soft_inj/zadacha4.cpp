@@ -15,7 +15,7 @@
 using namespace std;
 
 int main(){
-    char Word[30][30];
+    char Word[15][15];
     char FWord[15];
     char SWord[15];
     char w, check = false;
@@ -23,6 +23,10 @@ int main(){
     for(int i = 0; i < 15; i++){
         FWord[i]='\0';
         SWord[i]='\0';
+        for (int j = 0; j < 15; j++)
+        {
+            Word[i][j]='\0';
+        }
     }
     cout << "Insert first word: "; cin >> FWord;
     cout << "Insert second word: "; cin >> SWord;
@@ -31,12 +35,6 @@ int main(){
         FWord[i] = w;
         w = toupper(SWord[i]);
         SWord[i] = w;
-    }
-    for(int i = 0; i < 30; i++){
-        for (int j = 0; j < 30; j++)
-        {
-            Word[i][j]='\0';
-        }
     }
     do{
         for(int i = 0; i < 15; i++){
