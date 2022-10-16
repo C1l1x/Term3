@@ -15,31 +15,34 @@
 using namespace std;
 
 int main(){
-    char Word[15][15];
-    char FWord[15];
-    char SWord[15];
-    char w, check = false;
-    int a = 0, b = 0;
+    char Result[15][15];
+    char Word1[15];
+    char Word2[15];
+    char Clear, check = false;
+    int a = 0, b = 0, c=0;
     for(int i = 0; i < 15; i++){
-        FWord[i]='\0';
-        SWord[i]='\0';
+        Word1[i]='\0';
+        Word2[i]='\0';
         for (int j = 0; j < 15; j++)
         {
-            Word[i][j]='\0';
+            Result[i][j]='\0';
         }
     }
-    cout << "Insert first word: "; cin >> FWord;
-    cout << "Insert second word: "; cin >> SWord;
+
+    cout << "Insert first word: "; cin >> Word1;
+    cout << "Insert second word: "; cin >> Word2;
+
     for(int i = 0; i < 15; i++){
-        w = toupper(FWord[i]);
-        FWord[i] = w;
-        w = toupper(SWord[i]);
-        SWord[i] = w;
+        Clear = toupper(Word1[i]);
+        Word1[i] = Clear;
+        Clear = toupper(Word2[i]);
+        Word2[i] = Clear;
     }
+
     do{
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15; j++){
-                if(FWord[j]==SWord[i]&&FWord[j]!='\0'&&SWord[i]!='\0'){
+                if(Word1[j]==Word2[i]&&Word1[j]!='\0'&&Word2[i]!='\0'){
                     a = j;
                     b = i;
                     check = true;
@@ -47,24 +50,24 @@ int main(){
             }
         }
     }while(check!=true);
+
+    cout << a << " " << b << endl;
+
     for(int i = 0; i < 15; i++){
-        Word[i][b]=FWord[i];
+        Result[i][b] = Word1[i];
     }
     for (int i = 0; i < 15; i++)
     {
-        Word[a][i]=SWord[i];
+        Result[a][i] = Word2[i];
     }
     for(int i = 0; i < 15; i++){
-        for (int j = 0; j < 15; j++)
-        {
-            if(Word[i][j]=='\0'){
+        for (int j = 0; j < 15; j++){
+            if(Result[i][j]=='\0'){
                 cout << " ";
             }else{
-                cout << Word[i][j];
+                cout << Result[i][j];
             }
-        }
+        }cout << "\n";
         
     }
-    
-    cout << Word << endl;
 }
