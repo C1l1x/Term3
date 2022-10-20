@@ -18,8 +18,9 @@ int main(){
     char Result[15][15];
     char Word1[15];
     char Word2[15];
-    char Clear, check = false;
-    int a = 0, b = 0, c=0;
+    char Clear;
+    bool check = false;
+    int a = 0, b = 0, c=0, count = 0;
     for(int i = 0; i < 15; i++){
         Word1[i]='\0';
         Word2[i]='\0';
@@ -39,35 +40,74 @@ int main(){
         Word2[i] = Clear;
     }
 
+    for (int i = 0; i < 15; i++)
+    {
+        if (Word1[i]!='\0')
+        {
+            count++;
+        }
+        
+    }
+    
+
     do{
-        for(int i = 0; i < 15; i++){
-            for(int j = 0; j < 15; j++){
-                if(Word1[j]==Word2[i]&&Word1[j]!='\0'&&Word2[i]!='\0'){
-                    a = j;
-                    b = i;
-                    check = true;
-                }
+        for (int i = 0; i < 15; i++)
+        {
+            if(Word1[i]==Word2[c]&&Word1[i]!='\0'&&Word2[c]!='\0'){
+                a = i;
+                b = c;
+                check = true;
             }
         }
-    }while(check!=true);
+        c++;
+    }while(a==0&&c!=14);
 
     cout << a << " " << b << endl;
 
-    for(int i = 0; i < 15; i++){
-        Result[i][b] = Word1[i];
+    if(check==true){
+        for(int i = 0; i < 15; i++){
+            Result[i][b] = Word1[i];
+        }
+        for (int i = 0; i < 15; i++)
+        {
+            Result[a][i] = Word2[i];
+        }
+        for(int i = 0; i < 15; i++){
+            for (int j = 0; j < 15; j++){
+                if(Result[i][j]=='\0'){
+                    cout << " ";
+                }else{
+                    cout << Result[i][j];
+                }
+            }cout << "\n";
+            
+        }
     }
-    for (int i = 0; i < 15; i++)
-    {
-        Result[a][i] = Word2[i];
-    }
-    for(int i = 0; i < 15; i++){
-        for (int j = 0; j < 15; j++){
-            if(Result[i][j]=='\0'){
-                cout << " ";
-            }else{
-                cout << Result[i][j];
-            }
-        }cout << "\n";
+    if(check==false){
+        for (int i = 0; i < 15; i++)
+        {
+            Result[0][i] = Word1[i];
+        }
+        for (int i = 0; i < 15; i++)
+        {
+            Result[i+1][count] = Word2[i];
+        }
+        for (int i = 0; i < 15; i++)
+        {
+            for (int j = 0; j < 15; j++)
+            {
+                if (Result[i][j]=='\0')
+                {
+                    cout << " ";
+                }else{
+                    cout << Result[i][j];
+                }
+                
+            }cout << "\n";
+            
+        }
+        
+
         
     }
 }
