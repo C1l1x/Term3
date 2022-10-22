@@ -62,15 +62,13 @@ int main(){
         c++;
     }while(a==0&&c!=14);
 
-    cout << a << " " << b << endl;
-
     if(check==true){
         for(int i = 0; i < 15; i++){
-            Result[i][b] = Word1[i];
+            Result[b][i] = Word1[i];
         }
         for (int i = 0; i < 15; i++)
         {
-            Result[a][i] = Word2[i];
+            Result[i][a] = Word2[i];
         }
         for(int i = 0; i < 15; i++){
             for (int j = 0; j < 15; j++){
