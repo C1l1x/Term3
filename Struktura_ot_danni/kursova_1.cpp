@@ -25,7 +25,7 @@ int main(){
     {
         if (text[i].length()==length)
         {
-            cout << "String " << i+1 << " equal to max string " << text[i] << endl;
+            cout << "String " << i+1 << " equal to max string is " << text[i] << endl;
         }
         else if (text[i].length()<length)
         {
