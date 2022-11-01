@@ -52,6 +52,7 @@ int main(){
                 a = i;
                 b = c;
                 check = true;
+                break;
             }
         }
         c++;
