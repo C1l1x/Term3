@@ -40,5 +40,7 @@ int main(){
     {
         cout << result[i] << endl;
     }
+
+    // ! recreate this
     
 }
