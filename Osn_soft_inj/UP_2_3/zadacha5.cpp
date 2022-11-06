@@ -53,12 +53,4 @@ int main(){
         }
         
     }
-
-    
-    
-    
-    //cout << "Longest word/s is " << words.substr(word_start, maxWord_len) << " ." << endl;
-
 }
-
-//dr dre kotka pile kuche

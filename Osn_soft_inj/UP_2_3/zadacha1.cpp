@@ -17,7 +17,6 @@ int main(){
     cout << "Insert b: "; cin >> b;
     cout << "insert c: "; cin >> c; 
 
-    // проверяваме дали има нули в уравнението, за да намерим най-малкото число
     if (a==0&&b==0){
         result = -c;
         cout << result << endl;
@@ -29,7 +28,6 @@ int main(){
         cout << result << endl;
     }
     
-    // проверки за най-малкото число 
     if (a>0&&a<=b){
         if(a<c&&b<=c||a<c&&c<=b){
             result = a-b*c;
