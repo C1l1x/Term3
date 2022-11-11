@@ -1,5 +1,5 @@
 /*
-    Даден е списък от символни низове. Да се напише програма, която намира броя на низовете със 
+    Даден е списък от символни низове. Да се напише програма, която намира броя на низовете със
 зададена дължина и създава нов списък, съдържащ само низовете с дължина, по-малка от зададената.
 */
 
@@ -9,39 +9,42 @@
 using namespace std;
 
 int main(){
-    int count,br=0;
-    int length;
-    cout << "Insert string counts: "; cin >> count;
-    string text[count];
-    string result[count];
-    for (int i = 0; i < count; i++)
+    string Input, Result;
+    int len, same_len = 0;
+
+    cout << "Insert text: ";
+    getline(cin, Input);
+    Input += ' ';
+    cout << "Insert length: ";
+    cin >> len;
+
+    int max_len = Input.length(), len_count = 0, curr_len = 0, word_len = 0, word_start = 0, word_end = 0;
+
+    while (len_count <= max_len)
     {
-        cout << "String " << i+1 << " :"; cin >> text[i];
-    }
-    
-    cout << "\nInsert max length:"; cin >> length;
-    
-    for (int i = 0; i < count; i++)
-    {
-        if (text[i].length()==length)
+        if (Input[len_count]!=' ')
         {
-            cout << "String " << i+1 << " equal to max string is " << text[i] << endl;
-        }
-        else if (text[i].length()<length)
+            len_count++;
+        }else
         {
-            result[br]=text[i];
-            br++;
+            curr_len = len_count - word_len;
+            
+            if (curr_len == len)
+            {
+                same_len++;
+            }else if (curr_len <= len)
+            {
+                word_start = word_len;
+                word_end = curr_len;
+                Result += Input.substr(word_start, word_end);
+                Result += ' ';
+            }
+            len_count++;
+            word_len = len_count;
         }
     }
 
-    cout << "\nThis is new array.\n";
-
-    for (int i = 0; i < br; i++)
-    {
-        cout << result[i] << endl;
-    }
-
-    // ! recreate this
-    // you got this
+    cout << "Words with " << len << " length is: " << same_len << "\n";
+    cout << "New array with less than " << len << " length: " << Result << "\n";
     
 }
