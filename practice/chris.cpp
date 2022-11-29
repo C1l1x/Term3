@@ -37,50 +37,43 @@ User input:     Output:
 
 using namespace std;
 
-void FindPayOptions(int A[], int n, int m, int k) {
-    int summ = 0;
-    bool check = true;
-    int i = 0;
-    while (check == true && i != m) {
-        for (i = 0; i < m; i++)
-        {
-            summ = A[i] + A[i+1];
-            if (summ <= n)
+void SortArray(int *A, int m){
+    int i, j, k, min;
+    for(i = 0; i < m - 1; i++) {
+        k = i;
+        for(j = i + 1; j < m; j++) {
+            if (A[j] < A[k]) {
+                k = j;
+            }
+            if (k > i)
             {
-                if (summ == n)
-                {
-                    k = 2;
-                    cout << k << endl;
-                    cout << A[i] << " " << A[i+1] << endl;
-                    check = false;
-                    break;
-                }
-                if (summ + A[i+2] <= n)
-                {
-                    if (summ + A[i+2] == n)
-                    {
-                        k = 3;
-                        cout << k << endl;
-                        cout << A[i] << " " << A[i+1] << " " << A[i+2] << endl;
-                        check = false;
-                        break;
-                    }
-                }
-                summ = 0;    
+                min = A[k];
+                A[k] = A[i];
+                A[i] = min;
             }
         }
     }
-    if(check == true) {
-        for (int i = 0; i < m; i++) {
-            summ += A[i];
-        }   
-        if (summ > n)
-        {
-            cout << -1 << "\n";
-        }else if (summ < n)
-        {
-            cout << 0 << endl;
+}
+
+void FindPayOptions(int A[], int n, int m, int k) {
+    // nai-golqmoto chislo ot masiva da se sravni s sumata koqto trqbva da se zaplati (N) 
+    // ako chisloto e po-malko ot sumata se izvajda ot neq i tursum chisloto v masiva
+    // ako nqma takova chislo shte namalim s edna edinica i shte tursim pak
+    int curr_num, a = 0, count = 0;
+    int i, j, z;
+    for (int i = m-1; i > 0; i--){
+        if (A[i] < n) {
+            curr_num = n - A[i];
         }
+        for (int j = 0; j < 0; j++)
+        {
+            if (A[j] == curr_num)
+            {
+                /* code */
+            }
+            
+        }
+        
     }
 }
 
@@ -102,6 +95,12 @@ int main() {
         i++;
     }
 
+    SortArray(A, m);
+    for (int i = 0; i < m; i++)
+    {
+        cout << A[i] << " ";
+    }
+    cout << "\n";
     FindPayOptions(A, n, m, k);
     
 }

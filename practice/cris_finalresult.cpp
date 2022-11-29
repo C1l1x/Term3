@@ -37,6 +37,24 @@ User input:     Output:
 
 using namespace std;
 
+void SortArray(int *A, int m){
+    int i, j, k, min;
+    for(i = 0; i < m - 1; i++) {
+        k = i;
+        for(j = i + 1; j < m; j++) {
+            if (A[j] < A[k]) {
+                k = j;
+            }
+            if (k > i)
+            {
+                min = A[k];
+                A[k] = A[i];
+                A[i] = min;
+            }
+        }
+    }
+}
+
 void FindPayOptions(int A[], int n, int m, int k) {
     int summ = 0;
     int check = -1;
@@ -68,10 +86,10 @@ void FindPayOptions(int A[], int n, int m, int k) {
         }   
         if (summ > n)
         {
-            cout << -1 << "\n";
+            cout << check << "\n";
         }else if (summ < n)
         {
-            cout << 0 << endl;
+            cout << check + 1 << endl;
         }
     }
 }
@@ -94,6 +112,7 @@ int main() {
         i++;
     }
 
+    SortArray(A, m);
     FindPayOptions(A, n, m, k);
     
 }
