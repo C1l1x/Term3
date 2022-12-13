@@ -4,14 +4,14 @@ i ustanovil, che ima tochno po dve moneti ot vseki vid. Toi trqbva da zaplati su
 dali vulshebniq chovek moje da zaplati tazi suma bez da mu vrushtat resto.
 
 Input:
-    Na purviq red na standartniq vhod sa zapisani chislata N (1 <= N <= 10^9) i M(1 <= M <= 15), a na vtoiriq chislata
+    Na purviq red na standartniq vhod sa zapisani chislata N (1 <= N <= 10^9) i M(1 <= M <= 15), coins_gived na vtoiriq chislata
 A1, A2, ..., Am (1 <= Ai <= 10^9), vsichki razlichni.
 
 Output:
     Na edin red na standartniq izhod izvedete chisloto K - broi na monetite, s koito vulshebiqt chovek shte plati nujnata 
 suma, bez resto. Na sledvashtiq red izvedete K chisla - stoinosti na monetite. Ako ima nqkolko resheniq, izvedete tova, v 
 koeto vulshebniqt chovek shte dade nai-malko moneti. Ako ima nqkolko takiva resheniq, izvedete koe da e ot tqh. Ako ne e 
-vuzmojno zaplashtane bez resto, izvedete chisloto 0. Ako puk vulshebniqt chovek nqa dostatuchno pari, za da zaplati 
+vuzmojno zaplashtane bez resto, izvedete chisloto 0. Ako puk vulshebniqt chovek nqma dostatuchno pari, za da zaplati 
 nujnata suma, izvedete chisloto -1.
 
 User input:     Output:
@@ -27,80 +27,87 @@ User input:     Output:
 3   4           
 */
 
-
-// A - stoinost na moneti
-// N - suma koqto trqbva da zaplati
-// M - broi na monetite ot edin vid
-// K - broi na monetite
-
 #include <iostream>
 
 using namespace std;
 
-void SortArray(int *A, int m){
+void SortArray(int *Money_values, int money_count){
     int i, j, k, min;
-    for(i = 0; i < m - 1; i++) {
+    for(i = 0; i < money_count - 1; i++) {
         k = i;
-        for(j = i + 1; j < m; j++) {
-            if (A[j] < A[k]) {
+        for(j = i + 1; j < money_count; j++) {
+            if (Money_values[j] < Money_values[k]) {
                 k = j;
             }
             if (k > i)
             {
-                min = A[k];
-                A[k] = A[i];
-                A[i] = min;
+                min = Money_values[k];
+                Money_values[k] = Money_values[i];
+                Money_values[i] = min;
             }
         }
     }
 }
 
-void FindPayOptions(int A[], int n, int m, int k) {
-    // nai-golqmoto chislo ot masiva da se sravni s sumata koqto trqbva da se zaplati (N) 
-    // ako chisloto e po-malko ot sumata se izvajda ot neq i tursum chisloto v masiva
-    // ako nqma takova chislo shte namalim s edna edinica i shte tursim pak
-    int curr_num, a = 0, count = 0;
-    int i, j, z;
-    for (int i = m-1; i > 0; i--){
-        if (A[i] < n) {
-            curr_num = n - A[i];
+void FindPayOptions(int Money_values[], int price, int money_count, int coins_gived[]) {
+    int curr_value = 0, count = 0;
+    int i, j = 0, temp = 0;
+    for (int i = money_count-1; i > 0; i--) {
+        if (curr_value < price) {
+            curr_value += Money_values[i];
+            count++;
+            coins_gived[j++] = Money_values[i];
         }
-        for (int j = 0; j < 0; j++)
-        {
-            if (A[j] == curr_num)
-            {
-                /* code */
+        if (curr_value > price) {
+            curr_value -= Money_values[i];
+            count--;
+            j--;
+        }
+        if (curr_value == price) {    
+            cout << count << "\n";
+            for (int i = 0; i < count; i++){
+                cout << coins_gived[i] << " ";
             }
-            
+            cout << "\n";
+            break;
+        }
+    }
+    if (curr_value != price)
+    {
+        for (int i = 0; i < money_count; i++)
+        {
+            temp += Money_values[i];
+        }
+        if (temp < price) {
+            cout << -1 << "\n";
+        }else {
+            cout << 0 << "\n";
         }
         
     }
+    
+    
+    
 }
 
-
 int main() {
-    int n, m, k = 0;
+    int price, money_count, coins_gived[10];
     cout << "\nInsert amount to be paid: ";
-    cin >> n;
+    cin >> price;
     cout << "Insert number of coins of one type: ";
-    cin >> m;
-    m += m;
-    int A[m];
+    cin >> money_count;
+    money_count += money_count;
+    int Money_values[money_count];
 
-    for (int i = 1; i < m; i++)
+    for (int i = 1; i < money_count; i++)
     {
         cout << "Insert coin value: ";
-        cin >> A[i];
-        A[i-1] = A[i];
+        cin >> Money_values[i];
+        Money_values[i-1] = Money_values[i];
         i++;
     }
 
-    SortArray(A, m);
-    for (int i = 0; i < m; i++)
-    {
-        cout << A[i] << " ";
-    }
-    cout << "\n";
-    FindPayOptions(A, n, m, k);
+    SortArray(Money_values, money_count);
+    FindPayOptions(Money_values, price, money_count, coins_gived);
     
 }
