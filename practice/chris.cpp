@@ -111,3 +111,7 @@ int main() {
     FindPayOptions(Money_values, price, money_count, coins_gived);
     
 }
+
+/*
+Made by Cilix
+*/
