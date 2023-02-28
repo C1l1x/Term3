@@ -33,6 +33,8 @@ User input:     Output:
 // M - broi na monetite ot edin vid
 // K - broi na monetite
 
+// this not fine
+
 #include <iostream>
 
 using namespace std;
