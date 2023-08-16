@@ -55,7 +55,6 @@ int main(){
         {
             n = c-b*a;
             cout << n << endl;
-            cout << "damn" << endl;
         }   
     }
     
